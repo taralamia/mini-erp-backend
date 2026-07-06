@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+
+  mongodb:
+
+    image: mongo:8
+
+    container_name: mini-erp-mongodb
+
+    restart: always
+
+    ports:
+
+      - "27017:27017"
+
+    environment:
+
+      MONGO_INITDB_DATABASE: mini_erp
+
+    volumes:
+
+      - mongodb_data:/data/db
+
+volumes:
+
+  mongodb_data:
