@@ -2,9 +2,12 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
+
+import routes from "./routes";
+
 import notFound from "./middleware/notFound.middleware";
 import errorHandler from "./middleware/error.middleware";
-import routes from "./routes";
+
 const app = express();
 
 app.use(cors());
@@ -16,10 +19,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan("dev"));
-// 404 Handler
+
+/**
+ * Routes
+ */
+app.use("/api/v1", routes);
+
+/**
+ * 404 Handler
+ */
 app.use(notFound);
 
-// Global Error Handler
+/**
+ * Global Error Handler
+ */
 app.use(errorHandler);
-app.use("/api/v1", routes);
+
 export default app;
