@@ -4,6 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import notFound from "./middleware/notFound.middleware";
 import errorHandler from "./middleware/error.middleware";
+import routes from "./routes";
 const app = express();
 
 app.use(cors());
@@ -20,4 +21,5 @@ app.use(notFound);
 
 // Global Error Handler
 app.use(errorHandler);
+app.use("/api/v1", routes);
 export default app;
